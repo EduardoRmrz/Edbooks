@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template import Context, Template
 
 from EdbooksApp.models import Libro
+from .forms import *
 
 # Create your views here.
 def inicio(request):
@@ -32,10 +33,18 @@ def base(request):
 def crear_libro(request):
     #POST
     if request.method == "POST":
-        info_formulario = request.POST
-        libro = Libro(titulo=info_formulario["titulo"], autor=info_formulario["autor"], año=int(info_formulario["año"]))
-        libro.save()
-        return redirect("libros")
+        formulario = NuevoLibro(request.POST)
+        if formulario.is_valid():
+            info_libro = formulario.cleaned_data
+            libro = Libro(titulo=info_libro["titulo"], autor=info_libro["autor"], año=int(info_libro["año"]))
+            libro.save()
+            return redirect("libros")
+        else:
+            redirect("crear_libro")
+
     #GET Y OTROS METODOS
     else:
-        return render(request, "formulario_libro.html", {})
+        formulariovacio = NuevoLibro()
+        return render(request, "formulario_libro.html", {"form":formulariovacio})
+
+
