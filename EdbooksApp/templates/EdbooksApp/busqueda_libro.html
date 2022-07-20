@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulopagina %} 
+Buscar libro - Edbooks
+{% endblock %}
+
+{% block contenidopagina %}
+<p>Buscar por titulo de libro: 
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="titulo" id="" maxlength="50">
+
+        <!-- <p>Autor: <input type="text" name="autor" id=""></p>
+        <p>Año de publicación: <input type="number" name="año" id="" min="0"></p>  -->
+
+        <input type="submit" value="Buscar libro">
+    </form>
+{% endblock %}

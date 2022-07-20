@@ -47,4 +47,7 @@ def crear_libro(request):
         formulariovacio = NuevoLibro()
         return render(request, "formulario_libro.html", {"form":formulariovacio})
 
-
+def buscar_libro(request):
+    titulos = []
+    return render(request, "busqueda_libro.html", {"titulos":titulos})
+    
