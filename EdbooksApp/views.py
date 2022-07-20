@@ -48,6 +48,11 @@ def crear_libro(request):
         return render(request, "formulario_libro.html", {"form":formulariovacio})
 
 def buscar_libro(request):
-    titulos = []
-    return render(request, "busqueda_libro.html", {"titulos":titulos})
+    if request.method == "POST":
+        titulo = request.POST["titulo"]
+        titulos = Libro.objects.filter(titulo__icontains=titulo)
+        return render(request, "busqueda_libro.html", {"titulos":titulos})
+    else:
+        titulos = []
+        return render(request, "busqueda_libro.html", {"titulos":titulos})
     
