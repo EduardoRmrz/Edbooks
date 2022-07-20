@@ -28,3 +28,6 @@ def about(request):
 
 def base(request):
     return render(request, "base.html", {})
+
+def crear_libro(request):
+    return render(request, "formulario_libro.html", {})

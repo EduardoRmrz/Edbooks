@@ -10,4 +10,5 @@ urlpatterns = [
     path('autores/', autor, name="autores"),
     path('about/', about, name="about"),
     path('base/', base),
+    path('crear_libro/', crear_libro, name="crear_libro"),
 ]
