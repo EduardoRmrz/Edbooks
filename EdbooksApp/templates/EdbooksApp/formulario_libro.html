@@ -9,7 +9,7 @@ Agregar libro - Edbooks
 <h2>Agrega un libro nuevo:</h2>
 <form action="" method="post">
     {% csrf_token %}
-    <p>Titulo: <input type="text" name="titulo" id=""></p>
+    <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
     <p>Autor: <input type="text" name="autor" id=""></p>
     <p>Año de publicación: <input type="number" name="año" id="" min="0"></p>
     <input type="submit" value="Agregar libro">
