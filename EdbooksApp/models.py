@@ -17,3 +17,6 @@ class Autores(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     nacionalidad = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "Autores"

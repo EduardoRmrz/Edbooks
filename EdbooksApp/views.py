@@ -23,7 +23,8 @@ def autor(request):
     return render(request, "autores.html", {})
 
 def about(request):
-    return HttpResponse("Vista de about")
+    # return HttpResponse("Vista de about")
+    return render(request, "about.html", {})
 
 def base(request):
     return render(request, "base.html", {})
