@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import Context, Template
 
@@ -33,9 +33,9 @@ def crear_libro(request):
     #POST
     if request.method == "POST":
         info_formulario = request.POST
-        libro = Libro(info_formulario["titulo"], info_formulario["autor"], info_formulario["año"])
+        libro = Libro(titulo=info_formulario["titulo"], autor=info_formulario["autor"], año=int(info_formulario["año"]))
         libro.save()
-        return render(request, "formulario_libro.html", {})
+        return redirect("libros")
     #GET Y OTROS METODOS
     else:
         return render(request, "formulario_libro.html", {})
