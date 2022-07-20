@@ -8,5 +8,5 @@ urlpatterns = [
     path('libros/', libros),
     path('usuarios/', usuarios),
     path('autores/', autor),
-
+    path('base/', base),
 ]

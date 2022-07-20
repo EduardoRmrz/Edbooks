@@ -20,3 +20,6 @@ def usuarios(request):
 
 def autor(request):
     return HttpResponse("Vista de autores")
+
+def base(request):
+    return render(request, "base.html", {})
