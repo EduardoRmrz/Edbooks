@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulopagina %} 
+Buscar autor - Edbooks
+{% endblock %}
+
+{% block contenidopagina %}
+<p><h2>Buscar por nombre de autor: </h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="nombre" id="" maxlength="50">
+
+        <!-- <p>Autor: <input type="text" name="autor" id=""></p>
+        <p>Año de publicación: <input type="number" name="año" id="" min="0"></p>  -->
+
+        <input type="submit" value="Buscar autor">
+    </form>
+</p>
+<p>Resultados: </p>
+<ul>
+    {% for nombre in nombres %}
+        <li>{{nombre.nombre}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

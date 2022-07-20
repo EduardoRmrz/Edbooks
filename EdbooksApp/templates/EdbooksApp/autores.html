@@ -15,52 +15,21 @@ Autores - Edbooks
                 <div class="container px-6">
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-6">
-                            {% comment %}
-                                Los libros son:
+                                Los autores son:
                                 <ul class="list-group">
-                                    {% for libro in libros %}
+                                    {% for autor in autores %}
                                         <li class="list-group-item d-flex justify-content-between align-items-start"> 
-                                            {{libro.titulo}} 
-                                            <span class="badge bg-secondary rounded-pill">{{libro.año}}</span>
+                                            {{autor.nombre}} 
+                                            <span class="badge bg-secondary rounded-pill">{{autor.nacionalidad}}</span>
                                         </li>
                                     {% endfor %}
-                            {% endcomment %}
                             </ul>
+                            <a href="{% url 'crear_autor' %}">+ Agrega un nuevo autor</a>
                         </div>
                     </div>
                 </div>
             </section>
-            <br><br>
-            <!-- Content Row-->
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Libro 1</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Libro 2</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Libro 3</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
-            </div>
+            <br>
         </div>
         <br>
 {% endblock %}

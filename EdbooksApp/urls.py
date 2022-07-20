@@ -12,4 +12,6 @@ urlpatterns = [
     path('base/', base),
     path('crear_libro/', crear_libro, name="crear_libro"),
     path('buscar_libro/', buscar_libro, name="buscar_libro"),
+    path('crear_autor/', crear_autor, name="crear_autor"),
+    path('buscar_autor/', buscar_autor, name="buscar_autor"),
 ]

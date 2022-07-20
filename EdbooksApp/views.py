@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import Context, Template
 
-from EdbooksApp.models import Libro
+from EdbooksApp.models import Autores, Libro
 from .forms import *
 
 # Create your views here.
@@ -21,7 +21,34 @@ def usuarios(request):
 
 def autor(request):
     #return HttpResponse("Vista de autores")
-    return render(request, "autores.html", {})
+    autores = Autores.objects.all()
+    return render(request, "autores.html", {"autores":autores})
+
+def crear_autor(request):
+    #POST
+    if request.method == "POST":
+        formulario = NuevoAutor(request.POST)
+        if formulario.is_valid():
+            info_autor = formulario.cleaned_data
+            autor = Autores(nombre=info_autor["nombre"], apellido=info_autor["apellido"], nacionalidad=info_autor["nacionalidad"])
+            autor.save()
+            return redirect("autores")
+        else:
+            redirect("crear_autor")
+
+    #GET Y OTROS METODOS
+    else:
+        formulariovacio = NuevoAutor()
+        return render(request, "formulario_autor.html", {"form":formulariovacio})
+
+def buscar_autor(request):
+    if request.method == "POST":
+        nombre = request.POST["nombre"]
+        nombres = Autores.objects.filter(nombre__icontains=nombre)
+        return render(request, "busqueda_autor.html", {"nombres":nombres})
+    else:
+        nombres = []
+        return render(request, "busqueda_autor.html", {"nombres":nombres})
 
 def about(request):
     # return HttpResponse("Vista de about")
