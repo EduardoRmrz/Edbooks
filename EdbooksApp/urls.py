@@ -5,8 +5,9 @@ from .views import *
 
 urlpatterns = [
     #URL de EdbooksApp
-    path('libros/', libros),
-    path('usuarios/', usuarios),
-    path('autores/', autor),
+    path('libros/', libros, name="libros"),
+    path('usuarios/', usuarios, name="usuarios"),
+    path('autores/', autor, name="autores"),
+    path('about/', about, name="about"),
     path('base/', base),
 ]
