@@ -30,4 +30,13 @@ def base(request):
     return render(request, "base.html", {})
 
 def crear_libro(request):
-    return render(request, "formulario_libro.html", {})
+    #GET
+    if request.method == "GET":
+        return render(request, "formulario_libro.html", {})
+
+    #POST
+    if request.method == "POST":
+        info_formulario = request.POST
+        libro = Libro(info_formulario["titulo"], info_formulario["autor"], info_formulario["año"])
+        libro.save()
+        return render(request, "formulario_libro.html", {})
