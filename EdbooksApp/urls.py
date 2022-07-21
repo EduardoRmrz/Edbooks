@@ -14,4 +14,6 @@ urlpatterns = [
     path('buscar_libro/', buscar_libro, name="buscar_libro"),
     path('crear_autor/', crear_autor, name="crear_autor"),
     path('buscar_autor/', buscar_autor, name="buscar_autor"),
+    path('eliminar_autor/<autor_id>', eliminar_autor, name="eliminar_autor"),
+    path('eliminar_libro/<libro_id>', eliminar_libro, name="eliminar_libro"),
 ]

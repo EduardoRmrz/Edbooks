@@ -6,30 +6,66 @@ Autores - Edbooks
 {% endblock %}
 
 {% block contenidopagina %}
-
-        <!-- Page Content-->
-        <div class="container px-4 px-lg-5">
-            
-            <!-- Seccion de libros-->
-            <section class="bg-light py-5">
-                <div class="container px-6">
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-6">
-                                Los autores son:
-                                <ul class="list-group">
-                                    {% for autor in autores %}
-                                        <li class="list-group-item d-flex justify-content-between align-items-start"> 
-                                            {{autor.nombre}} 
-                                            <span class="badge bg-secondary rounded-pill">{{autor.nacionalidad}}</span>
-                                        </li>
-                                    {% endfor %}
-                            </ul>
-                            <a href="{% url 'crear_autor' %}">+ Agrega un nuevo autor</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <br>
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h1>Autores en la base de datos:</h1>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <form class="d-flex my-2 my-lg-0" action="" method="post">
+                    {% csrf_token %}
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre/nacionalidad" aria-label="Search">
+                    <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                    <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_autor' %}"> <i class="bi bi-plus-lg"></i> Agregar autor: </a>
+                    {% comment %}
+                        {% url 'crear_autor' %}
+                    {% endcomment %}
+                </form>
+            </div>
         </div>
         <br>
+        <h4>Resultados
+            {% if search %}
+                para "{{busqueda}}":
+            {% else %}
+                totales:
+            {% endif %}
+        </h4>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Nacionalidad</th> 
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for autor in autores %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{autor.nombre}}</td>
+                                <td>{{autor.apellido}}</td>
+                                <td>{{autor.nacionalidad}}</td>
+                                <td>
+                                    <a href="" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'eliminar_autor' autor.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    {% comment %}
+                                        {% url 'editar_autor' autor.id %}
+                                        {% url 'eliminar_autor' autor.id %}
+                                    {% endcomment %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

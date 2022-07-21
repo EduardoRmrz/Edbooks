@@ -5,6 +5,8 @@ from django.template import Context, Template
 
 from EdbooksApp.models import Autores, Libro
 from .forms import *
+from django.db.models import Q
+
 
 # Create your views here.
 def inicio(request):
@@ -12,7 +14,14 @@ def inicio(request):
     return render(request, "index.html", {"dia_hora":hoy})
 
 def libros(request):
+
     # return HttpResponse("Vista de libros")
+    if request.method == "POST":
+        search = request.POST["search"]
+        if search != "":
+            libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search) ).values()
+            return render(request, "libros.html", {"libros":libros, "search":True, "busqueda":search})
+
     libros = Libro.objects.all()
     return render(request, "libros.html", {"libros":libros})
 
@@ -21,6 +30,11 @@ def usuarios(request):
 
 def autor(request):
     #return HttpResponse("Vista de autores")
+    if request.method == "POST":
+        search = request.POST["search"]
+        if search != "":
+            autores = Autores.objects.filter( Q(nombre__icontains=search) | Q(nacionalidad__icontains=search) ).values()
+            return render(request, "autores.html", {"autores":autores, "search":True, "busqueda":search})
     autores = Autores.objects.all()
     return render(request, "autores.html", {"autores":autores})
 
@@ -49,6 +63,12 @@ def buscar_autor(request):
     else:
         nombres = []
         return render(request, "busqueda_autor.html", {"nombres":nombres})
+
+def eliminar_autor(request, autor_id):
+    autor = Autores.objects.get(id=autor_id)
+    autor.delete()
+    return redirect("autores")
+
 
 def about(request):
     # return HttpResponse("Vista de about")
@@ -82,4 +102,16 @@ def buscar_libro(request):
     else:
         titulos = []
         return render(request, "busqueda_libro.html", {"titulos":titulos})
-    
+
+def eliminar_libro(request, libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    libro.delete()
+    return redirect("libros")
+
+# def editar_libro(request, libro_id):
+#     libro = Libro.objects.get(id=libro_id)
+
+#     #GET Y OTROS METODOS
+#     else:
+#         formulariovacio = NuevoLibro()
+#         return render(request, "formulario_libro.html", {"form":formulariovacio})

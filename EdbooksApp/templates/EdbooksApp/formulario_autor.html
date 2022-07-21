@@ -6,15 +6,32 @@ Agregar autor - Edbooks
 {% endblock %}
 
 {% block contenidopagina %}
-<h2>Agrega un autor nuevo:</h2>
-<form action="" method="post">
-    {% csrf_token %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h2>Agrega un nuevo autor:</h2>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
 
-    <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p> 
-    <p>Autor: <input type="text" name="autor" id=""></p>
-    <p>Año de publicación: <input type="number" name="año" id="" min="0"></p> -->
-    {{ form.as_p }}
+                <div class="card">
+                    <div class="card-header text-center">
+                        
+                    </div>
+                    <div class="card-body"></div>
+                        <form action="" method="post">
+                            {% csrf_token %}
 
-    <input type="submit" value="Agregar autor">
-</form>
+                            <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p> 
+                            <p>Autor: <input type="text" name="autor" id=""></p>
+                            <p>Año de publicación: <input type="number" name="año" id="" min="0"></p> -->
+                            {{ form.as_p }}
+
+                            <input type="submit" value="Agregar autor">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
