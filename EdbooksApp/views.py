@@ -69,6 +69,22 @@ def eliminar_autor(request, autor_id):
     autor.delete()
     return redirect("autores")
 
+def editar_autor(request, autor_id):
+    autor = Autores.objects.get(id=autor_id)
+    if request.method == "POST":
+        formulario = NuevoAutor(request.POST)
+        if formulario.is_valid():
+            info_autor = formulario.cleaned_data
+            autor.nombre = info_autor["nombre"]
+            autor.apellido = info_autor["apellido"]
+            autor.nacionalidad = info_autor["nacionalidad"]
+            autor.save()
+            return redirect("autores")
+
+
+    #GET Y OTROS METODOS
+    formulario = NuevoAutor(initial={"nombre":autor.nombre, "apellido":autor.apellido, "nacionalidad":autor.nacionalidad})
+    return render(request,"formulario_autor.html",{"form":formulario})
 
 def about(request):
     # return HttpResponse("Vista de about")
@@ -108,10 +124,19 @@ def eliminar_libro(request, libro_id):
     libro.delete()
     return redirect("libros")
 
-# def editar_libro(request, libro_id):
-#     libro = Libro.objects.get(id=libro_id)
+def editar_libro(request, libro_id):
+    libro = Libro.objects.get(id=libro_id)
+    if request.method == "POST":
+        formulario = NuevoLibro(request.POST)
+        if formulario.is_valid():
+            info_libro = formulario.cleaned_data
+            libro.titulo = info_libro["titulo"]
+            libro.autor = info_libro["autor"]
+            libro.año = info_libro["año"]
+            libro.save()
+            return redirect("libros")
 
-#     #GET Y OTROS METODOS
-#     else:
-#         formulariovacio = NuevoLibro()
-#         return render(request, "formulario_libro.html", {"form":formulariovacio})
+
+    #GET Y OTROS METODOS
+    formulario = NuevoLibro(initial={"titulo":libro.titulo, "autor":libro.autor, "año":libro.año})
+    return render(request,"formulario_libro.html",{"form":formulario})

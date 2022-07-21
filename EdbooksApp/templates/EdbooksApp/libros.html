@@ -52,7 +52,7 @@ Libros - Edbooks
                                 <td>{{libro.titulo}}</td>
                                 <td>{{libro.autor}}</td>
                                 <td>
-                                    <a href="" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'editar_libro' libro.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
                                     <a href="{% url 'eliminar_libro' libro.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
                                     {% comment %}
                                         {% url 'editar_libro' libro.id %}

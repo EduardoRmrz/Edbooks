@@ -53,7 +53,7 @@ Autores - Edbooks
                                 <td>{{autor.apellido}}</td>
                                 <td>{{autor.nacionalidad}}</td>
                                 <td>
-                                    <a href="" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'editar_autor' autor.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
                                     <a href="{% url 'eliminar_autor' autor.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
                                     {% comment %}
                                         {% url 'editar_autor' autor.id %}
