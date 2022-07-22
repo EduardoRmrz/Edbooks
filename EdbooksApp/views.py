@@ -63,6 +63,10 @@ def register_request(request):
 
     return render(request,"register.html",{"form":form})
 
+def logout_request(request):
+    logout(request)
+    return redirect("inicio")
+
 def libros(request):
 
     # return HttpResponse("Vista de libros")
