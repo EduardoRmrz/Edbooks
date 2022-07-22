@@ -13,6 +13,7 @@ urlpatterns = [
     path('login/', login_request, name="login"),
     path('register/', register_request, name="register"),
     path('logout/', logout_request, name="logout"),
+    path('editar_perfil/', editar_perfil, name="editar_perfil"),
 
 
     path('crear_libro/', crear_libro, name="crear_libro"),
@@ -23,6 +24,7 @@ urlpatterns = [
     path('eliminar_libro/<libro_id>', eliminar_libro, name="eliminar_libro"),
     path('editar_libro/<libro_id>', editar_libro, name="editar_libro"),
     path('editar_autor/<autor_id>', editar_autor, name="editar_autor"),
+
 
 
 ]

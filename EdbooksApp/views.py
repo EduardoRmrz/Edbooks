@@ -198,3 +198,24 @@ def editar_libro(request, libro_id):
     #GET Y OTROS METODOS
     formulario = NuevoLibro(initial={"titulo":libro.titulo, "autor":libro.autor, "año":libro.año})
     return render(request,"formulario_libro.html",{"form":formulario})
+
+@login_required
+def editar_perfil(request):
+
+    user = request.user 
+    if request.method =="POST":
+        form = UserEditForm(request.POST) 
+
+        if form.is_valid():
+
+            info = form.cleaned_data
+            user.email = info["email"]
+            user.first_name = info["first_name"]
+            user.last_name = info["last_name"]
+            # user.password = info["password1"]
+            user.save()
+            return redirect("inicio")
+        
+    else:
+        form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
+    return render(request, "editar_perfil.html", {"form":form})

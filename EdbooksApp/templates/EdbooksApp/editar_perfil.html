@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 
 {% block titulopagina %} 
-Inicia sesion - Edbooks
+Editar perfil - Edbooks
 {% endblock %}
 
 {% block contenidopagina %}
 <section class="bg-light py-5">
     <div class="container px-5">
-        <h1>¡Te damos la bienvenida!</h1>
+        <h1>Editar perfil: </h1>
+        <br>
+        <h5>Estas editando al usuario "{{user.username}}":</h5>
+        <br>
         <form action="" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit">Iniciar Sesión</button>
+            <button type="submit">Guardar</button>
         </form>
     </div>
 </section>
