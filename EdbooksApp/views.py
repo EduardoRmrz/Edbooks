@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def inicio(request):
@@ -81,7 +81,7 @@ def libros(request):
     libros = Libro.objects.all()
     return render(request, "libros.html", {"libros":libros})
 
-@login_required
+@staff_member_required
 def lectores(request):
     return HttpResponse("Vista de lectores")
 
