@@ -6,12 +6,37 @@ from django.template import Context, Template
 from EdbooksApp.models import Autores, Libro
 from .forms import *
 from django.db.models import Q
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
 def inicio(request):
     hoy = datetime.datetime.now()
     return render(request, "index.html", {"dia_hora":hoy})
+
+def login_request(request):
+    if request.method == "POST":
+
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+        else:
+            return redirect("login")
+    
+    form = AuthenticationForm()
+
+    return render(request, "login.html",{"form":form})
 
 def libros(request):
 
