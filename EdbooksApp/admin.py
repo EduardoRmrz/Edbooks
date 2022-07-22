@@ -7,9 +7,9 @@ class LibroAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'autor')
 admin.site.register(Libro, LibroAdmin)
 
-class UsuarioAdmin(admin.ModelAdmin):
+class LectorAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'email', 'edad')
-admin.site.register(Usuario,UsuarioAdmin)
+admin.site.register(Lector,LectorAdmin)
 
 class AutoresAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'nacionalidad')

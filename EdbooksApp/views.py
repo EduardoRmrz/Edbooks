@@ -82,8 +82,8 @@ def libros(request):
     return render(request, "libros.html", {"libros":libros})
 
 @login_required
-def usuarios(request):
-    return HttpResponse("Vista de usuarios")
+def lectores(request):
+    return HttpResponse("Vista de lectores")
 
 @login_required
 def autor(request):

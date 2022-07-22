@@ -7,11 +7,13 @@ class Libro(models.Model):
     autor = models.CharField(max_length=70)
     año = models.IntegerField()
 
-class Usuario(models.Model):
+class Lector(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     email = models.EmailField(blank=True, null=True)
     edad = models.IntegerField(null=True)
+    class Meta:
+        verbose_name_plural = "LEctores"
 
 class Autores(models.Model):
     nombre = models.CharField(max_length=50)
