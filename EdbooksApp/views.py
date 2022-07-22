@@ -8,6 +8,7 @@ from .forms import *
 from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -67,6 +68,7 @@ def logout_request(request):
     logout(request)
     return redirect("inicio")
 
+@login_required
 def libros(request):
 
     # return HttpResponse("Vista de libros")
@@ -79,9 +81,11 @@ def libros(request):
     libros = Libro.objects.all()
     return render(request, "libros.html", {"libros":libros})
 
+@login_required
 def usuarios(request):
     return HttpResponse("Vista de usuarios")
 
+@login_required
 def autor(request):
     #return HttpResponse("Vista de autores")
     if request.method == "POST":
