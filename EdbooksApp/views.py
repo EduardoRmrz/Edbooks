@@ -83,7 +83,7 @@ def libros(request):
 
 @staff_member_required
 def lectores(request):
-    return HttpResponse("Vista de lectores")
+    return render(request, 'lectores.html',{})
 
 @login_required
 def autor(request):
