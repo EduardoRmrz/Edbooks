@@ -43,3 +43,10 @@ class UserEditForm(UserCreationForm):
             fields = ['email', 'first_name', 'last_name', 'password1', 'password2']
 
             help_texts = {k:"" for k in fields}
+
+# class NuevoLector(forms.Form):
+#     nombre = forms.CharField(max_length=50) #, verbose="Titulo:")
+#     apellido = forms.CharField(max_length=70) #, verbose="Autor:")
+#     edad = forms.IntegerField(min_value=0, label="Edad: ")
+#     email = forms.EmailField(label="Email: ")
+#     nacionalidad = forms.CharField(max_length=50, label="Pais de residencia:")

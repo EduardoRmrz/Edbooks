@@ -1,0 +1,34 @@
+{% block titulopagina %} 
+Agregar libro - Edbooks
+{% endblock %}
+
+{% block contenidopagina %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h2>Formulario para libros:</h2>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-header text-center">
+                        
+                    </div>
+                    <div class="card-body"></div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p> 
+                            <p>Autor: <input type="text" name="autor" id=""></p>
+                            <p>Año de publicación: <input type="number" name="año" id="" min="0"></p> -->
+                            {{ form.as_p }}
+
+                            <input type="submit" class="btn btn-primary" value="Guardar libro">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

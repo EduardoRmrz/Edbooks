@@ -3,10 +3,10 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import Context, Template
 
-from EdbooksApp.models import Autores, Libro
+from EdbooksApp.models import Autores, Lector, Libro
 from .forms import *
 from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -219,3 +219,20 @@ def editar_perfil(request):
     else:
         form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
     return render(request, "editar_perfil.html", {"form":form})
+
+# def crear_lector(request):
+#     if request.method == "POST":
+#         formulario = NuevoLector(request.POST)
+#         if formulario.is_valid():
+#             info_lector = formulario.cleaned_data
+#             lector = Lector(nombre=info_lector["nombre"], apellido=info_lector["apellido"], email=info_lector["email"], edad=int(info_lector["edad"]), nacionalidad=info_lector["nacionalidad"])
+#             lector.save()
+#             return redirect("libros")
+#         else:
+#             redirect("crear_lector")
+
+#     #GET Y OTROS METODOS
+#     else:
+#         formulariovacio = NuevoLector()
+#         return render(request, "formulario_lector.html", {"form":formulariovacio})
+
