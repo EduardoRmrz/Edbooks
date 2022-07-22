@@ -15,3 +15,5 @@ class AutoresAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'nacionalidad')
     search_fields = ('nombre', 'nacionalidad')
 admin.site.register(Autores, AutoresAdmin)
+
+admin.site.register(Avatar)

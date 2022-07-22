@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import Context, Template
 
-from EdbooksApp.models import Autores, Lector, Libro
+from EdbooksApp.models import Autores, Avatar, Lector, Libro
 from .forms import *
 from django.db.models import Q
 from django.contrib.auth.forms import *
@@ -14,6 +14,15 @@ from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 def inicio(request):
     hoy = datetime.datetime.now()
+
+    if request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url =  "/media/avatar/generica.png" 
+        return render(request, "index.html", {"dia_hora":hoy, "url":url})
+    
     return render(request, "index.html", {"dia_hora":hoy})
 
 def login_request(request):

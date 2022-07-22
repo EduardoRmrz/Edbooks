@@ -1,8 +1,12 @@
 from django.db import models
 from django.forms import IntegerField
+from django.contrib.auth.models import User
 
 #modelo de avtar
+class Avatar(models.Model):
 
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatar/', blank=True, null=True)
 
 # Create your models here.
 class Libro(models.Model):

@@ -37,7 +37,8 @@
                         {% endif %}
 
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><p class="text-light my-2 mx-2"><i class="bi bi-person-check-fill"></i> Hola, <b>{{user.username}}</b>!</p></li>
+                        <img class="rounded my-1" src="{{url}}" alt="" srcset="" style="height: 30px;">
+                        <li class="nav-item"><p class="text-light my-2 mx-2"></i> Hola, <b>{{user.username}}</b>!</p></li>
                         <li class="nav-item"><a class="btn btn-primary btn-sm my-1" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                         {% else %}
                         <li class="nav-item"><a class="btn btn-primary btn-sm mx-2 my-1" href="{% url 'login' %}">Iniciar Sesión</a></li>
