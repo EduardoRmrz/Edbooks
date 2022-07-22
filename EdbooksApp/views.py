@@ -6,7 +6,7 @@ from django.template import Context, Template
 from EdbooksApp.models import Autores, Libro
 from .forms import *
 from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -37,6 +37,30 @@ def login_request(request):
     form = AuthenticationForm()
 
     return render(request, "login.html",{"form":form})
+
+def register_request(request):
+    if request.method == "POST":
+        
+        # form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1') 
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+
+        return render(request,"register.html",{"form":form})
+
+    # form = UserCreationForm()
+    form = UserRegisterForm()
+
+    return render(request,"register.html",{"form":form})
 
 def libros(request):
 
