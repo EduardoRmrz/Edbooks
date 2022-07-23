@@ -179,7 +179,8 @@ def about(request):
             url = avatar.imagen.url
         except:
             url =  "/media/avatar/generica.png"
-    return render(request, "about.html", {"url":url})
+        return render(request, "about.html", {"url":url})
+    return render(request, "about.html", {})
 
 def base(request):
     return render(request, "base.html", {})
