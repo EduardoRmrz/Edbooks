@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de libros</title>
-</head>
-<body>
-    <h2>Detalle del libro:</h2>
-    <p>Titulo: {{libro.titulo}}</p>
-    <p>Autor: {{libro.autor}}</p>
-    <p>Año: {{libro.año}}</p>
-    <a href="{% url 'libro_list' %}">Regresar a lista de libros</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block titulopagina %} 
+Detalles de libros - Edbooks
+{% endblock %}
+
+{% block contenidopagina %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body>
+        <h2>Detalle del libro:</h2>
+        <p>Titulo: {{libro.titulo}}</p>
+        <p>Autor: {{libro.autor}}</p>
+        <p>Año: {{libro.año}}</p>
+        <a href="{% url 'libros' %}">Regresar a lista de libros</a>
+    </body>
+    </html>
+{% endblock %}
