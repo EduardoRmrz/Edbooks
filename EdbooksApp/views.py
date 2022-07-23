@@ -196,6 +196,7 @@ def crear_libro(request):
         else:
             redirect("crear_libro")
 
+
     #GET Y OTROS METODOS
     else:
         formulariovacio = NuevoLibro()
