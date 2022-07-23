@@ -28,6 +28,7 @@ def inicio(request):
     
     return render(request, "index.html", {"dia_hora":hoy})
 
+
 def login_request(request):
     if request.method == "POST":
 
@@ -84,14 +85,21 @@ def logout_request(request):
 def libros(request):
 
     # return HttpResponse("Vista de libros")
+ 
     if request.method == "POST":
         search = request.POST["search"]
         if search != "":
             libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search) ).values()
             return render(request, "libros.html", {"libros":libros, "search":True, "busqueda":search})
-
+            
+    elif request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url =  "/media/avatar/generica.png" 
     libros = Libro.objects.all()
-    return render(request, "libros.html", {"libros":libros})
+    return render(request, "libros.html", {"url":url, "libros":libros})
 
 @staff_member_required
 def lectores(request):
@@ -105,8 +113,15 @@ def autor(request):
         if search != "":
             autores = Autores.objects.filter( Q(nombre__icontains=search) | Q(nacionalidad__icontains=search) ).values()
             return render(request, "autores.html", {"autores":autores, "search":True, "busqueda":search})
+    
+    elif request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url =  "/media/avatar/generica.png"
     autores = Autores.objects.all()
-    return render(request, "autores.html", {"autores":autores})
+    return render(request, "autores.html", {"autores":autores, "url":url,})
 
 def crear_autor(request):
     #POST
@@ -158,7 +173,13 @@ def editar_autor(request, autor_id):
 
 def about(request):
     # return HttpResponse("Vista de about")
-    return render(request, "about.html", {})
+    if request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url =  "/media/avatar/generica.png"
+    return render(request, "about.html", {"url":url})
 
 def base(request):
     return render(request, "base.html", {})
@@ -215,6 +236,8 @@ def editar_libro(request, libro_id):
 def editar_perfil(request):
 
     user = request.user 
+    avatar = Avatar.objects.get(usuario=request.user)
+    url = avatar.imagen.url
     if request.method =="POST":
         form = UserEditForm(request.POST) 
 
@@ -227,10 +250,10 @@ def editar_perfil(request):
             # user.password = info["password1"]
             user.save()
             return redirect("inicio")
-        
+
     else:
         form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
-    return render(request, "editar_perfil.html", {"form":form})
+    return render(request, "editar_perfil.html", {"form":form, "url":url})
 
 # def crear_lector(request):
 #     if request.method == "POST":
