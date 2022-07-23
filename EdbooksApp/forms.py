@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 
+from EdbooksApp.models import Avatar
+
 class NuevoLibro(forms.Form):
     titulo = forms.CharField(max_length=50) #, verbose="Titulo:")
     autor = forms.CharField(max_length=70) #, verbose="Autor:")
@@ -15,6 +17,7 @@ class NuevoAutor(forms.Form):
 
 class UserRegisterForm(UserCreationForm):
     
+    foto = forms.ImageField(required=False)
     first_name = forms.CharField(label="Nombre", required=False)
     last_name = forms.CharField(label="Apellidos", required=False)
 
@@ -50,3 +53,9 @@ class UserEditForm(UserCreationForm):
 #     edad = forms.IntegerField(min_value=0, label="Edad: ")
 #     email = forms.EmailField(label="Email: ")
 #     nacionalidad = forms.CharField(max_length=50, label="Pais de residencia:")
+
+class AvatarForm(forms.Form):
+    imagen = forms.ImageField(label="imagen")
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

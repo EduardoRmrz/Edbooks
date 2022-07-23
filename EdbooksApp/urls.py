@@ -15,6 +15,7 @@ urlpatterns = [
     path('logout/', logout_request, name="logout"),
     path('editar_perfil/', editar_perfil, name="editar_perfil"),
     #path('crear_lector/', crear_lector, name="crear_lector"),
+    path('agregar_avatar/', agregar_avatar, name="agregar_avatar"),
 
 
     path('crear_libro/', crear_libro, name="crear_libro"),

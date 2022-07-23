@@ -245,3 +245,17 @@ def editar_perfil(request):
 #         formulariovacio = NuevoLector()
 #         return render(request, "formulario_lector.html", {"form":formulariovacio})
 
+@login_required
+def agregar_avatar(request):
+    
+    if request.method == "POST":
+        form = AvatarForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            user = User.objects.get(username=request.user.username)
+            avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
+            avatar.save()
+            return redirect("inicio")
+    else:
+        form = AvatarForm()
+    return render(request,"agregar_avatar.html",{"form":form})
