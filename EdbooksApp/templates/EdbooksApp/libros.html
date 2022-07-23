@@ -52,6 +52,7 @@ Libros - Edbooks
                                 <td>{{libro.titulo}}</td>
                                 <td>{{libro.autor}}</td>
                                 <td>
+                                    <a href="{% url 'libro_detail' libro.id %}" class="text-success badge badge-success text-decoration-none"> <i class= "bi bi-question-diamond"></i> Detalle</a>
                                     <a href="{% url 'editar_libro' libro.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
                                     <a href="{% url 'eliminar_libro' libro.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
                                     {% comment %}
@@ -99,7 +100,7 @@ Libros - Edbooks
                             <h5 class="card-title">George R. R. Martin</h5>
                             <p class="card-text">es una novela de fantasía escrita por el autor estadounidense George R. R. Martin en 1996 y ganadora del premio Locus a la mejor novela de fantasía en 1997. Se trata de la primera entrega de la serie de gran popularidad Canción de hielo y fuego. </p>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'libro_list' %}">More Info</a></div>
                     </div>
                 </div>
             </div>
