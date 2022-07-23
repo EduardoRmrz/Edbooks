@@ -27,6 +27,15 @@ urlpatterns = [
     path('editar_libro/<libro_id>', editar_libro, name="editar_libro"),
     path('editar_autor/<autor_id>', editar_autor, name="editar_autor"),
 
+    path('libro/list', LibrosList.as_view(), name="libro_list"),
+    path(r'^(?P<pk>\d+)$', LibroDetail.as_view(), name="libro_detail"),
+    path(r'^nuevo$', LibroCreate.as_view(), name="libro_create"),
+    path(r'^editar/(?P<pk>\d+)$', LibroUpdate.as_view(), name="libro_update"),
+    path(r'^eliminar/(?P<pk>\d+)$', LibroDelete.as_view(), name="libro_delete"),
+
+
+
+
 
 
 ]

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de libros</title>
+</head>
+<body>
+    <h2>Lista de libros:</h2>
+    <ul>
+        {% for libro in object_list %}
+            <li>
+                Libro: {{libro.titulo}} {{libro.autor}} | 
+                <a href="{% url 'libro_detail' libro.id %}">Ver</a>
+                <a href="{% url 'libro_update' libro.id %}">Editar</a>
+                <a href="{% url 'libro_delete' libro.id %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'libro_create' %}">Agregar libro</a>
+</body>
+</html>

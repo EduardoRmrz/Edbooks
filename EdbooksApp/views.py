@@ -2,6 +2,9 @@ import datetime
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import Context, Template
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from EdbooksApp.models import Autores, Avatar, Lector, Libro
 from .forms import *
@@ -259,3 +262,27 @@ def agregar_avatar(request):
     else:
         form = AvatarForm()
     return render(request,"agregar_avatar.html",{"form":form})
+
+class LibrosList(ListView):
+    model = Libro
+    template_name = "libros_list.html"
+
+class LibroDetail(DetailView):
+    model = Libro
+    template_name = "libro_detail.html"
+
+class LibroCreate(CreateView):
+    model = Libro
+    success_url = "/edbookapp/libro/list"
+    fields = ["titulo", "autor", "año"]
+
+class LibroUpdate(UpdateView):
+    model = Libro
+    success_url = "/edbookapp/libro/list"
+    fields = ["titulo", "autor", "año"]
+
+class LibroDelete(DeleteView):
+    model = Libro
+    success_url = "/edbookapp/libro/list"
+
+
