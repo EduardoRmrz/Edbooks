@@ -8,6 +8,9 @@ class Avatar(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='avatar/', blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "Avatares"
+
 # Create your models here.
 class Libro(models.Model):
     titulo = models.CharField(max_length=50)
@@ -22,12 +25,13 @@ class Lector(models.Model):
     #nacionalidad = models.CharField(max_length=30)
 
     class Meta:
-        verbose_name_plural = "LEctores"
+        verbose_name_plural = "Lectores"
 
 class Autores(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     nacionalidad = models.CharField(max_length=50)
+    #libros_escritos = IntegerField(min_value=0)
 
     class Meta:
         verbose_name_plural = "Autores"

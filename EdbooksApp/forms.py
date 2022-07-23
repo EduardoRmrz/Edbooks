@@ -14,6 +14,7 @@ class NuevoAutor(forms.Form):
     nombre = forms.CharField(max_length=50) #, verbose="Titulo:")
     apellido = forms.CharField(max_length=70) #, verbose="Autor:")
     nacionalidad = forms.CharField(max_length=50, label="Pais de residencia:")
+    #libros_escritos = forms.IntegerField(min_value=0)
 
 class UserRegisterForm(UserCreationForm):
     
