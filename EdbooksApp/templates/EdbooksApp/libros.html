@@ -54,7 +54,9 @@ Libros - Edbooks
                                 <td>
                                     <a href="{% url 'libro_detail' libro.id %}" class="text-success badge badge-success text-decoration-none"> <i class= "bi bi-question-diamond"></i> Detalle</a>
                                     <a href="{% url 'editar_libro' libro.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    {% if user.is_staff %}
                                     <a href="{% url 'eliminar_libro' libro.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    {% endif %}
                                     {% comment %}
                                         {% url 'editar_libro' libro.id %}
                                         {% url 'eliminar_libro' libro.id %}

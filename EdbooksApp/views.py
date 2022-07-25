@@ -192,9 +192,12 @@ def crear_libro(request):
         formulario = NuevoLibro(request.POST, request.FILES)
         if formulario.is_valid():
             info_libro = formulario.cleaned_data
-            libro = Libro(titulo=info_libro["titulo"], autor=info_libro["autor"], año=int(info_libro["año"]), imagen=info_libro["imagen"])
+            libro = Libro(titulo=info_libro["titulo"], autor=info_libro["autor"], año=int(info_libro["año"]), imagen=info_libro["imagen"], resumen=info_libro["resumen"])
             libro.save()
             return redirect("libros")
+
+     
+
         else:
             redirect("crear_libro")
 
