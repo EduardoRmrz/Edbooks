@@ -21,7 +21,7 @@ class NuevoAutor(forms.Form):
 
 class UserRegisterForm(UserCreationForm):
     
-    foto = forms.ImageField(required=False)
+    #image = forms.ImageField(required=False)
     first_name = forms.CharField(label="Nombre", required=False)
     last_name = forms.CharField(label="Apellidos", required=False)
 

@@ -61,7 +61,7 @@ def register_request(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1') 
-            #imagen = form.cleaned_data.get('imagen')
+            #image = form.cleaned_data.get('image')
             form.save()
             user = authenticate(username=username, password=password)
 
@@ -180,8 +180,8 @@ def about(request):
             url = avatar.imagen.url
         except:
             url =  "/media/avatar/generica.png"
-        return render(request, "about.html", {})
-    return render(request, "about.html", {})
+        return render(request, "about.html", {"url":url})
+    return render(request, "about.html", {"url":url})
 
 def base(request):
     return render(request, "base.html", {})
@@ -255,6 +255,8 @@ def editar_perfil(request):
         if form.is_valid():
 
             info = form.cleaned_data
+            print(info["imagen"])
+            print(request.FILES)
             user.email = info["email"]
             user.first_name = info["first_name"]
             user.last_name = info["last_name"]
@@ -264,6 +266,9 @@ def editar_perfil(request):
                 avatar.imagen = info['imagen']
                 avatar.save()
             return redirect("inicio")
+        else:
+            print(form.errors)
+            return render(request, "editar_perfil.html", {"form":form})
 
     else:
         form = UserEditForm2(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name, "imagen":avatar.imagen})
