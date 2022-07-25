@@ -8,7 +8,7 @@ Instalación de Django
 
 Para correr el proyecto
 
-`$ python3 ./manage.py runserver
+`$ python3 ./manage.py runserver`
 
 Para realizar las migraciones
 
