@@ -92,7 +92,10 @@ def libros(request):
         if search != "":
             libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search)).values()
             return render(request, "libros.html", {"libros":libros, "search":True, "busqueda":search})
-            
+        else:
+            libros = Libro.objects.all()
+            return render(request, "libros.html",{"libros":libros})
+
     elif request.user.is_authenticated:
         try:
             avatar = Avatar.objects.get(usuario=request.user)
@@ -114,7 +117,10 @@ def autor(request):
         if search != "":
             autores = Autores.objects.filter( Q(nombre__icontains=search) | Q(nacionalidad__icontains=search) ).values()
             return render(request, "autores.html", {"autores":autores, "search":True, "busqueda":search})
-    
+        else:
+            autores = Autores.objects.all()
+            return render(request, "autores.html", {"autores":autores})
+
     elif request.user.is_authenticated:
         try:
             avatar = Avatar.objects.get(usuario=request.user)
