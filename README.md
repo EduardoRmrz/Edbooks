@@ -53,4 +53,4 @@ https://docs.google.com/spreadsheets/d/1qmlhtxluiuT0zX2RF9-TsoGGmz5rKyvuzYU170CC
 
 ## VIDEO DE PRUEBA
 
-
+https://www.loom.com/share/39b35903fa5f487d979729de42774661
