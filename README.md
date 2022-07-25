@@ -1,5 +1,6 @@
 # Edbooks - Entrega final de Coder - PYTHON 31080
-Nombre: Ramirez Arenas, José Eduardo 
+##Nombre: Ramirez Arenas, José Eduardo 
+
 Instalacion del proyecto en pc 
 Instalación de Django
 
