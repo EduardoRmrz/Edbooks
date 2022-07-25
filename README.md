@@ -44,7 +44,7 @@ Los usuarios pueden:
 - Crear, editar, visualizar los libros
 - Crear, editar y eliminar autores
 
-Los usuarios pueden:
+Los usuarios staff pueden:
 - Agregar, editar y eliminar su avatar en el apartado de editar perfil
 - Crear, editar, visualizar y eliminar los libros
 - Crear, editar y eliminar autores
