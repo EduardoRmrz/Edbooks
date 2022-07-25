@@ -3,7 +3,7 @@ Nombre: Ramirez Arenas, José Eduardo
 Instalacion del proyecto en pc 
 Instalación de Django
 
-'$ python3 -m pip install Django'
+`$ python3 -m pip install Django`
 
 Para correr el proyecto
 
