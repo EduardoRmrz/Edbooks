@@ -60,4 +60,6 @@ https://docs.google.com/spreadsheets/d/1qmlhtxluiuT0zX2RF9-TsoGGmz5rKyvuzYU170CC
 
 https://www.loom.com/share/39b35903fa5f487d979729de42774661
 
-En caso de no poder observarse 
+En caso de no poder observarse en la pagina de loom el siguiente enlace se puede observar el video en youtube:
+
+https://youtu.be/9xUnj1HUJJo
