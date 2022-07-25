@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.forms import IntegerField
 from django.contrib.auth.models import User
@@ -8,6 +9,8 @@ class Avatar(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='avatar/', blank=True, null=True)
 
+    def __str__(self) -> str:
+        return f"Usuario: {self.usuario}"
     class Meta:
         verbose_name_plural = "Avatares"
 
@@ -16,6 +19,8 @@ class Libro(models.Model):
     titulo = models.CharField(max_length=50)
     autor = models.CharField(max_length=70)
     año = models.IntegerField()
+    resumen = models.TextField(null=True, blank=True)
+    imagen = models.ImageField(upload_to="portadas", null=True, blank=True)
 
 class Lector(models.Model):
     nombre = models.CharField(max_length=50)

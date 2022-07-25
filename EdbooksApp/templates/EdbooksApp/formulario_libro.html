@@ -18,13 +18,15 @@ Agregar libro - Edbooks
                         
                     </div>
                     <div class="card-body"></div>
-                        <form action="" method="post">
+                        <form action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p> 
                             <p>Autor: <input type="text" name="autor" id=""></p>
                             <p>Año de publicación: <input type="number" name="año" id="" min="0"></p> -->
                             {{ form.as_p }}
+
+                            
 
                             <input type="submit" class="btn btn-primary" value="Guardar libro">
                         </form>

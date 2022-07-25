@@ -9,6 +9,9 @@ class NuevoLibro(forms.Form):
     titulo = forms.CharField(max_length=50) #, verbose="Titulo:")
     autor = forms.CharField(max_length=70) #, verbose="Autor:")
     año = forms.IntegerField(min_value=0, label="Año de publicacion:") #, verbose="Año de publicacion:")
+    resumen = forms.CharField(widget=forms.Textarea, required=False)
+    imagen = forms.ImageField(required=False)
+
 
 class NuevoAutor(forms.Form):
     nombre = forms.CharField(max_length=50) #, verbose="Titulo:")
@@ -48,15 +51,16 @@ class UserEditForm(UserCreationForm):
 
             help_texts = {k:"" for k in fields}
 
-# class NuevoLector(forms.Form):
-#     nombre = forms.CharField(max_length=50) #, verbose="Titulo:")
-#     apellido = forms.CharField(max_length=70) #, verbose="Autor:")
-#     edad = forms.IntegerField(min_value=0, label="Edad: ")
-#     email = forms.EmailField(label="Email: ")
-#     nacionalidad = forms.CharField(max_length=50, label="Pais de residencia:")
-
 class AvatarForm(forms.Form):
     imagen = forms.ImageField(label="imagen")
     class Meta:
         model = Avatar
         fields = ['imagen']
+
+class UserEditForm2(forms.Form):
+
+    email = forms.EmailField(label="Email")
+    imagen = forms.ImageField(label="Imagen", required=False)
+
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")

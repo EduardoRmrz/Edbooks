@@ -11,7 +11,7 @@ Registrate - Edbooks
         <form action="" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button class="btn btn-success px-3 py-1" type="submit">Resgistrarse</button>
+            <button class="btn btn-success px-3 py-1" type="submit">Registrarse</button>
             <a class="btn btn-primary px-3 py-1" href="{% url 'login' %}"></i> Ya tengo cuenta</a>
         </form>
     </div>

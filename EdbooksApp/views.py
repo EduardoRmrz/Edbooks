@@ -1,4 +1,5 @@
 import datetime
+from tkinter.messagebox import NO
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import Context, Template
@@ -23,7 +24,7 @@ def inicio(request):
             avatar = Avatar.objects.get(usuario=request.user)
             url = avatar.imagen.url
         except:
-            url =  "/media/avatar/generica.png" 
+            url = "/media/avatar/generica.png" 
         return render(request, "index.html", {"dia_hora":hoy, "url":url})
     
     return render(request, "index.html", {"dia_hora":hoy})
@@ -57,10 +58,10 @@ def register_request(request):
         
         # form = UserCreationForm(request.POST)
         form = UserRegisterForm(request.POST)
-
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1') 
+            #imagen = form.cleaned_data.get('imagen')
             form.save()
             user = authenticate(username=username, password=password)
 
@@ -89,7 +90,7 @@ def libros(request):
     if request.method == "POST":
         search = request.POST["search"]
         if search != "":
-            libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search) ).values()
+            libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search)).values()
             return render(request, "libros.html", {"libros":libros, "search":True, "busqueda":search})
             
     elif request.user.is_authenticated:
@@ -179,7 +180,7 @@ def about(request):
             url = avatar.imagen.url
         except:
             url =  "/media/avatar/generica.png"
-        return render(request, "about.html", {"url":url})
+        return render(request, "about.html", {})
     return render(request, "about.html", {})
 
 def base(request):
@@ -188,10 +189,10 @@ def base(request):
 def crear_libro(request):
     #POST
     if request.method == "POST":
-        formulario = NuevoLibro(request.POST)
+        formulario = NuevoLibro(request.POST, request.FILES)
         if formulario.is_valid():
             info_libro = formulario.cleaned_data
-            libro = Libro(titulo=info_libro["titulo"], autor=info_libro["autor"], año=int(info_libro["año"]))
+            libro = Libro(titulo=info_libro["titulo"], autor=info_libro["autor"], año=int(info_libro["año"]), imagen=info_libro["imagen"])
             libro.save()
             return redirect("libros")
         else:
@@ -212,6 +213,7 @@ def buscar_libro(request):
         titulos = []
         return render(request, "busqueda_libro.html", {"titulos":titulos})
 
+@staff_member_required
 def eliminar_libro(request, libro_id):
     libro = Libro.objects.get(id=libro_id)
     libro.delete()
@@ -220,28 +222,35 @@ def eliminar_libro(request, libro_id):
 def editar_libro(request, libro_id):
     libro = Libro.objects.get(id=libro_id)
     if request.method == "POST":
-        formulario = NuevoLibro(request.POST)
+        formulario = NuevoLibro(request.POST, request.FILES)
         if formulario.is_valid():
             info_libro = formulario.cleaned_data
             libro.titulo = info_libro["titulo"]
             libro.autor = info_libro["autor"]
             libro.año = info_libro["año"]
+            libro.resumen = info_libro["resumen"]
+            libro.imagen = info_libro["imagen"]
             libro.save()
             return redirect("libros")
 
 
     #GET Y OTROS METODOS
-    formulario = NuevoLibro(initial={"titulo":libro.titulo, "autor":libro.autor, "año":libro.año})
+    formulario = NuevoLibro(initial={"titulo":libro.titulo, "autor":libro.autor, "año":libro.año, "resumen":libro.resumen, "imagen":libro.imagen})
     return render(request,"formulario_libro.html",{"form":formulario})
 
 @login_required
 def editar_perfil(request):
 
     user = request.user 
-    avatar = Avatar.objects.get(usuario=request.user)
-    url = avatar.imagen.url
+    try:
+        avatar = Avatar.objects.get(usuario=user)
+    except:
+        avatar = Avatar(usuario=user)
+        avatar.save()
+        #url = avatar.imagen.url
+
     if request.method =="POST":
-        form = UserEditForm(request.POST) 
+        form = UserEditForm2(request.POST, request.FILES) 
 
         if form.is_valid():
 
@@ -251,27 +260,14 @@ def editar_perfil(request):
             user.last_name = info["last_name"]
             # user.password = info["password1"]
             user.save()
+            if info['imagen'] != None:
+                avatar.imagen = info['imagen']
+                avatar.save()
             return redirect("inicio")
 
     else:
-        form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
-    return render(request, "editar_perfil.html", {"form":form, "url":url})
-
-# def crear_lector(request):
-#     if request.method == "POST":
-#         formulario = NuevoLector(request.POST)
-#         if formulario.is_valid():
-#             info_lector = formulario.cleaned_data
-#             lector = Lector(nombre=info_lector["nombre"], apellido=info_lector["apellido"], email=info_lector["email"], edad=int(info_lector["edad"]), nacionalidad=info_lector["nacionalidad"])
-#             lector.save()
-#             return redirect("libros")
-#         else:
-#             redirect("crear_lector")
-
-#     #GET Y OTROS METODOS
-#     else:
-#         formulariovacio = NuevoLector()
-#         return render(request, "formulario_lector.html", {"form":formulariovacio})
+        form = UserEditForm2(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name, "imagen":avatar.imagen})
+    return render(request, "editar_perfil.html", {"form":form})
 
 @login_required
 def agregar_avatar(request):
@@ -282,7 +278,8 @@ def agregar_avatar(request):
         if form.is_valid():
             user = User.objects.get(username=request.user.username)
             avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
-            avatar.save()
+
+            #avatar.save()
             return redirect("inicio")
     else:
         form = AvatarForm()
