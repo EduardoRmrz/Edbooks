@@ -49,4 +49,8 @@ Los usuarios pueden:
 
 ##### UNIT TEST
 Dentro de este archivo se pueden observar los casos de prueba para el sitio
+https://docs.google.com/spreadsheets/d/1qmlhtxluiuT0zX2RF9-TsoGGmz5rKyvuzYU170CCdOw/edit?usp=sharing
+
+## VIDEO DE PRUEBA
+
 
