@@ -32,6 +32,10 @@ Para acceder al sitio se dirige a la siguiente URL `"http://127.0.0.1:8000"`
 - **Pagina con contenido en tipo de lista** -
 ![libros](https://user-images.githubusercontent.com/106790128/180830420-12960a6f-ef2c-4509-8f52-3f16cf47ad49.PNG)
 
+- **Pagina de about/acerca de mi** 
+![about](https://user-images.githubusercontent.com/106790128/180849182-b0da51f2-1b39-4d5e-b296-70a8dfb5fbfc.PNG)
+
+
 ##### CRUD
 Dentro de este proyecto se pueden crear usuarios que tienen permitido crear y editar libros y autores, ademas, pueden visualizar a detalle cada libro con su respectiva informacion, sin embargo, solo los usuarios staff pueden eliminar elementos de la base de datos 
 
@@ -47,6 +51,7 @@ Los usuarios pueden:
 - Tienen acceso al panel de administrador 
 - Pueden observar la pagina de BD de lectores 
 
+
 ## UNIT TEST
 Dentro de este archivo se pueden observar los casos de prueba para el sitio
 https://docs.google.com/spreadsheets/d/1qmlhtxluiuT0zX2RF9-TsoGGmz5rKyvuzYU170CCdOw/edit?usp=sharing
@@ -54,3 +59,5 @@ https://docs.google.com/spreadsheets/d/1qmlhtxluiuT0zX2RF9-TsoGGmz5rKyvuzYU170CC
 ## VIDEO DE PRUEBA
 
 https://www.loom.com/share/39b35903fa5f487d979729de42774661
+
+En caso de no poder observarse 
