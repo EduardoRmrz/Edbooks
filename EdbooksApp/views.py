@@ -84,24 +84,19 @@ def logout_request(request):
 
 @login_required
 def libros(request):
-
     # return HttpResponse("Vista de libros")
- 
+    try:
+        avatar = Avatar.objects.get(usuario=request.user)
+        url = avatar.imagen.url
+    except:
+        url =  "/media/avatar/generica.png" 
+
     if request.method == "POST":
         search = request.POST["search"]
         if search != "":
-            libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search)).values()
-            return render(request, "libros.html", {"libros":libros, "search":True, "busqueda":search})
-        else:
-            libros = Libro.objects.all()
-            return render(request, "libros.html",{"libros":libros})
+            libros = Libro.objects.filter( Q(titulo__icontains=search) | Q(autor__icontains=search))#.values()
+            return render(request, "libros.html", {"libros":libros, "search":True, "busqueda":search, "url":url})
 
-    elif request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url =  "/media/avatar/generica.png" 
     libros = Libro.objects.all()
     return render(request, "libros.html", {"url":url, "libros":libros})
 

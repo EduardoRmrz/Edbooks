@@ -71,40 +71,67 @@ Libros - Edbooks
     </div>
 </section>
 <br>
-<div class="container px-5"><h1>Los libros mas leidos:</h1></div> <br>
-            <!-- Content Row-->
+{% comment %}
+    <div class="container px-5"><h1>Los libros mas leidos:</h1></div> <br>
+                <!-- Content Row-->
+            <div class="container px-4 px-lg-5">   
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body"><br>
+                                <h2 class="card-title">Meditaciones</h2>
+                                <h5 class="card-title">Marco Aurelio</h5> <br>
+                                <p class="card-text">Obra literaria constituida por una serie de reflexiones del emperador Marco Aurelio, aparentemente fuera del tiempo y sin cronología. La obra, en doce tomos, es única en su género, y parece recorrer los últimos años de la vida interior de este emperador.</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://es.wikipedia.org/wiki/Meditaciones" target="_blank">Wikipedia Info</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Miles de Millones</h2>
+                                <h5 class="card-title">Carl Sagan</h5>
+                                <p class="card-text">Los diecinueve ensayos o capítulos que componen la obra brindan la visión de Sagan sobre temas que considera fundamentales «en la antesala del milenio», a través de su estilo habitual para explicar en términos asequibles las cuestiones científicas más complejas.</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://es.wikipedia.org/wiki/Miles_de_millones" target="_blank">Wikipedia Info</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Juego de Tronos</h2>
+                                <h5 class="card-title">George R. R. Martin</h5>
+                                <p class="card-text">es una novela de fantasía escrita por el autor estadounidense George R. R. Martin en 1996 y ganadora del premio Locus a la mejor novela de fantasía en 1997. Se trata de la primera entrega de la serie de gran popularidad Canción de hielo y fuego. </p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://es.wikipedia.org/wiki/Juego_de_tronos" target="_blank">Wikipedia Info</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endcomment %}
+        <!-- Content Row-->
         <div class="container px-4 px-lg-5">   
             <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body"><br>
-                            <h2 class="card-title">Meditaciones</h2>
-                            <h5 class="card-title">Marco Aurelio</h5> <br>
-                            <p class="card-text">Obra literaria constituida por una serie de reflexiones del emperador Marco Aurelio, aparentemente fuera del tiempo y sin cronología. La obra, en doce tomos, es única en su género, y parece recorrer los últimos años de la vida interior de este emperador.</p>
+               
+
+                <h3>Los libros mas leidos:</h3>
+                <p>Consulta la informacion mas detallada de cada uno</p>
+                {% for libro in libros %}
+                    
+                    <div class="col-md-4 p-4">
+                        <div class="card h-100">
+                            {% if libro.imagen %}
+                                <img src="{{ libro.imagen.url }}" class="card-img-top" class="img-fluid rounded mb-4 mb-lg-0" width="200" height="600" />
+                            {% endif %}
+                            <div class="card-body">
+                                <h2>{{ libro.titulo }}</h2>
+                                <h5>{{ libro.autor }}</h5>
+                                <p>{{ libro.resumen }}</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'libro_detail' libro.id %}" target="_blank">Detalle del libro</a></div>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://es.wikipedia.org/wiki/Meditaciones" target="_blank">Wikipedia Info</a></div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Miles de Millones</h2>
-                            <h5 class="card-title">Carl Sagan</h5>
-                            <p class="card-text">Los diecinueve ensayos o capítulos que componen la obra brindan la visión de Sagan sobre temas que considera fundamentales «en la antesala del milenio», a través de su estilo habitual para explicar en términos asequibles las cuestiones científicas más complejas.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://es.wikipedia.org/wiki/Miles_de_millones" target="_blank">Wikipedia Info</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Juego de Tronos</h2>
-                            <h5 class="card-title">George R. R. Martin</h5>
-                            <p class="card-text">es una novela de fantasía escrita por el autor estadounidense George R. R. Martin en 1996 y ganadora del premio Locus a la mejor novela de fantasía en 1997. Se trata de la primera entrega de la serie de gran popularidad Canción de hielo y fuego. </p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="https://es.wikipedia.org/wiki/Juego_de_tronos" target="_blank">Wikipedia Info</a></div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 {% endblock %}
