@@ -29,8 +29,8 @@ Para acceder al sitio se dirige a la siguiente URL `"http://127.0.0.1:8000"`
 - **Panel de Administrador** -
 ![panel admin](https://user-images.githubusercontent.com/106790128/180830218-da9aab84-10a6-487b-889d-6cf4cef1371d.PNG)
 
-- **Pagina con contenido en tipo de lista** -
-![libros](https://user-images.githubusercontent.com/106790128/180830420-12960a6f-ef2c-4509-8f52-3f16cf47ad49.PNG)
+- **Pagina con contenido en tipo de lista y cards (libros)** -
+![libros2](https://user-images.githubusercontent.com/106790128/181034329-782be676-0d73-4f36-a96f-a6fcad8fec63.PNG)
 
 - **Pagina de about/acerca de mi** 
 ![about](https://user-images.githubusercontent.com/106790128/180849182-b0da51f2-1b39-4d5e-b296-70a8dfb5fbfc.PNG)
